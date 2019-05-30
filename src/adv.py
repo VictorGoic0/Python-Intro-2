@@ -39,7 +39,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-player1 = Player('outside')
+player1 = Player(room['outside'])
 # Write a loop that:
 #
 # * Prints the current room name
@@ -52,18 +52,29 @@ player1 = Player('outside')
 # If the user enters "q", quit the game.
 while True:
     current_room = player1.current_room
-    print(current_room)
-    print(f'Current Room: {room[current_room].name}')
-    print(f'Current Description: {room[current_room].description}')
+    print(f'***** Current Room: {current_room.name} *****')
+    print(f'***** Current Description: {current_room.description} *****')
     cmd = input("Enter a command ")
     if (cmd == 'n'):
-        print("Going north")
+        if (current_room.n_to):
+            player1.current_room = current_room.n_to
+        else:
+            print("There are no more rooms in that directions. Try a different direction.")
     elif (cmd == 's'):
-        print("Going south")
+        if (current_room.s_to):
+            player1.current_room = current_room.s_to
+        else:
+            print("There are no more rooms in that directions. Try a different direction.")
     elif (cmd == 'e'):
-        print("Going east")
+        if (current_room.e_to):
+            player1.current_room = current_room.e_to
+        else:
+            print("There are no more rooms in that directions. Try a different direction.")
     elif (cmd == 'w'):
-        print("Going west")
+        if (current_room.w_to):
+            player1.current_room = current_room.w_to
+        else:
+            print("There are no more rooms in that directions. Try a different direction.")
     elif (cmd == 'q'):
         print("Quitting game")
         break
