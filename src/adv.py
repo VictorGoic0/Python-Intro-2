@@ -54,27 +54,10 @@ while True:
     current_room = player1.current_room
     print(f'***** Current Room: {current_room.name} *****')
     print(f'***** Current Description: {current_room.description} *****')
+    directions = ['n', 's', 'e', 'w']
     cmd = input("Enter a command ")
-    if (cmd == 'n'):
-        if (current_room.n_to):
-            player1.current_room = current_room.n_to
-        else:
-            print("There are no more rooms in that directions. Try a different direction.")
-    elif (cmd == 's'):
-        if (current_room.s_to):
-            player1.current_room = current_room.s_to
-        else:
-            print("There are no more rooms in that directions. Try a different direction.")
-    elif (cmd == 'e'):
-        if (current_room.e_to):
-            player1.current_room = current_room.e_to
-        else:
-            print("There are no more rooms in that directions. Try a different direction.")
-    elif (cmd == 'w'):
-        if (current_room.w_to):
-            player1.current_room = current_room.w_to
-        else:
-            print("There are no more rooms in that directions. Try a different direction.")
+    if (cmd in directions):
+        player1.travel(cmd)
     elif (cmd == 'q'):
         print("Quitting game")
         break
